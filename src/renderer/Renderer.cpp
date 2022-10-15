@@ -2,7 +2,7 @@
 
 namespace gmq {
 
-const Int Renderer::DEFAULT_TRACING_DEPTH = 3;
+const Int Renderer::DEFAULT_TRACING_DEPTH = 2;
 const Int Renderer::DEFAULT_SAMPLE_NUMBER = 400;
 
 Renderer::Renderer(Int width, Int height, Camera *camera)
@@ -94,9 +94,12 @@ std::optional<Renderer::IntersectResult> Renderer::intersect(const Ray &ray, boo
     std::optional<IntersectResult> ans;
     for(std::shared_ptr<VisibleObject> object : objects) {
         auto rayLocal = object->getTransformation().toLocal(ray);
-        auto intersection = isPositive
-                ? object->intersect(rayLocal.first, -VisibleObject::DEFAULT_T_MAX, -VisibleObject::DEFAULT_T_MIN)
-                : object->intersect(rayLocal.first);
+        std::optional<VisibleObject::IntersectionResult> intersection;
+        if(isPositive) {
+            intersection = object->intersect(rayLocal.first, -VisibleObject::DEFAULT_T_MAX, -VisibleObject::DEFAULT_T_MIN);
+        } else {
+            intersection = object->intersect(rayLocal.first);
+        }
         if(!intersection.has_value()) {
             continue;
         }
@@ -147,7 +150,7 @@ Float Renderer::traceDirect(const Renderer::IntersectResult &result, const Vec3 
 
         // check if there is object blocking the light
         auto intersection = intersect(Ray(origin, direction), true);
-        if(intersection.has_value() && intersection.value().distance < direction.length() + VisibleObject::DEFAULT_T_MIN) {
+        if(intersection.has_value() && intersection.value().distance < direction.length() + VisibleObject::DEFAULT_T_MAX) {
             continue;
         }
 

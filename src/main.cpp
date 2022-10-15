@@ -5,8 +5,8 @@ using namespace gmq;
 
 int main() {
     auto sphere = std::make_shared<SphereObject>(LVec4(0, 0, 0, 1), Vec3(0.5, 0, 0), Material::DEFAULT, 1);
-    auto rectangle = std::make_shared<RectangleObject>(Transformation::WORLD, Material::DEFAULT, 6, 6);
-    auto light = std::make_shared<PointLight>(Vec3(1, 2, 1.5), 1.0);
+    auto rectangle = std::make_shared<RectangleObject>(Transformation::WORLD, Material::DEFAULT, 8, 8);
+    auto light = std::make_shared<PointLight>(Vec3(1, 2, 1.6), 1.0);
     auto camera = new PerspectiveCamera(LVec4(0, 0, 0, 4), Vec3(), 1.0);
     Renderer renderer(700, 700, camera);
     renderer.addObject(sphere);
