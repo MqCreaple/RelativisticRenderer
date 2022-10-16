@@ -71,8 +71,8 @@ void Renderer::render(Float time) {
 
 void Renderer::renderToImage(const string &fileName, Float time) {
     PPMImage image(fileName, surface->w, surface->h);
-    for(int i = 0; i < surface->w; i++) {
-        for(int j = 0; j < surface->h; j++) {
+    for(int j = surface->h - 1; j >= 0; j--) {
+        for(int i = 0; i < surface->w; i++) {
             auto pos = toFragment(IVec2(i, j));
             Color pixelColor(0);
             for(int k = 0; k < sampleNumber; k++) {
@@ -126,9 +126,9 @@ Float Renderer::traceIndirect(const Ray &ray, Int depth) const {
     Float direct = traceDirect(result, result.rayLocal.getDirection()) / result.intensityChange;
     auto inDirLocal = result.object->getMaterial()->sample(result.localResult.normal, result.rayLocal.getDirection());
     Ray inRayLocal(result.localResult.intersection, -inDirLocal.first);
-    auto inRayGlobal = result.object->getTransformation().toWorld(ray);
-    Float indirect = traceIndirect(inRayGlobal.first, depth - 1)
-            / inRayGlobal.second                                                    // convert from world ref frame to local
+    auto inRayWorld = result.object->getTransformation().toWorld(inRayLocal);       // TODO (repeated calculation of origin)
+    Float indirect = traceIndirect(inRayWorld.first, depth - 1)
+            / inRayWorld.second                                                     // convert from world ref frame to local
             * inDirLocal.second * dot(result.localResult.normal, inDirLocal.first)  // regular rendering equation
             / result.intensityChange;                                               // convert back from local ref frame to world
     return direct + indirect;

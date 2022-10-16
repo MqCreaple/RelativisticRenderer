@@ -17,4 +17,4 @@ add_library(libRelativisticRenderer
 )
 
 add_executable(RelativisticRenderer main.cpp)
-target_link_libraries(RelativisticRenderer libRelativisticRenderer ${SDL2_LIBRARIES})
+target_link_libraries(RelativisticRenderer libRelativisticRenderer ${SDL2_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})

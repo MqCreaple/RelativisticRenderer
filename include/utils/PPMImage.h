@@ -2,6 +2,7 @@
 
 #include "macro.h"
 #include "utils/Color.h"
+#include <cmath>
 #include <string>
 #include <iostream>
 #include <fstream>
