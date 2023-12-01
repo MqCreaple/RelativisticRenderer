@@ -2,7 +2,7 @@
 #include "RelativisticRenderer.h"
 using namespace gmq;
 
-int main() {
+int main(int argc, char *argv[]) {
     // Test 1: a high speed (0.6c) inertial frame, and Lorentz transformation
     Transformation t(Vec3(0.6 * lightSpeed, 0, 0));
     Mat4x4 l = Transformation::getLorentzMatrix(t.getVelocity());

@@ -4,6 +4,7 @@ add_library(libRelativisticRenderer
     utils/Ray.cpp
     utils/Color.cpp
     utils/PPMImage.cpp
+    utils/BMPImage.cpp
     components/Object.cpp
     components/VisibleObject.cpp
     components/SphereObject.cpp

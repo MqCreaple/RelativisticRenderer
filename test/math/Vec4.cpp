@@ -2,7 +2,7 @@
 #include "RelativisticRenderer.h"
 using namespace gmq;
 
-int main() {
+int main(int argc, char *argv[]) {
     Vec4 v(1, 2, 3, 4), w(5, Vec3(6, 7, 8));
     CHECK_EPSILON_EQU(v.length(), sqrt(30), 1e-7);
     CHECK_EPSILON_EQU(v.normalized(), Vec4(1 / sqrt(30), 2 / sqrt(30), 3 / sqrt(30), 4 / sqrt(30)), 1e-7);

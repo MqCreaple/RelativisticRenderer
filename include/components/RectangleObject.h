@@ -1,6 +1,7 @@
 #pragma once
 
 #include "components/VisibleObject.h"
+#include <cmath>
 
 namespace gmq {
 /**

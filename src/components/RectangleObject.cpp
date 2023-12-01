@@ -15,7 +15,7 @@ std::optional<VisibleObject::IntersectionResult> RectangleObject::intersect(cons
         return std::nullopt;
     }
     LVec4 intersection = ray.atDistance(t);
-    if(std::abs(intersection.x) > halfX || std::abs(intersection.y) > halfY) {
+    if(std::abs(intersection.x) > halfX || std::abs(intersection.y) > halfY || std::isnan(intersection.x) || std::isnan(intersection.y) || std::isnan(intersection.z)) {
         return std::nullopt;
     }
     return IntersectionResult(t, intersection, Vec3(0, 0, (ray.getOrigin().z > 0)? 1: -1));

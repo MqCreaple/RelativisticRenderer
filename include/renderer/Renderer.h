@@ -4,6 +4,7 @@
 #include "utils/Color.h"
 #include "utils/Random.h"
 #include "utils/PPMImage.h"
+#include "utils/BMPImage.h"
 #include "components/Camera.h"
 #include "components/VisibleObject.h"
 #include "components/PointLight.h"

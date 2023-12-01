@@ -1,4 +1,5 @@
 #include "renderer/Renderer.h"
+#include <cmath>
 
 namespace gmq {
 
@@ -50,6 +51,9 @@ void Renderer::render(Float time) {
                 auto rayWorld = primaryCamera->getTransformation().toWorld(rayLocal);
                 pixelColor += traceIndirect(rayWorld.first, tracingDepth) / rayWorld.second;
             }
+            // if(isnan(pixelColor.r) || isnan(pixelColor.g) || isnan(pixelColor.b)) {
+            //     std::cout << "NaN detected at (" << i << ", " << j << ")" << std::endl;
+            // }
             setPixel(i, j, pixelColor / (sampleNumber * 1.0f));
         }
         update();   //* DEBUG ONLY
@@ -63,6 +67,7 @@ void Renderer::render(Float time) {
     while(!quit) {
         if(SDL_PollEvent(&e)) {
             if(e.type == SDL_QUIT) {
+                printf("Quit\n");
                 quit = true;
             }
         }
@@ -70,7 +75,7 @@ void Renderer::render(Float time) {
 }
 
 void Renderer::renderToImage(const string &fileName, Float time) {
-    PPMImage image(fileName, surface->w, surface->h);
+    BMPImage image(fileName, surface->w, surface->h);
     for(int j = surface->h - 1; j >= 0; j--) {
         for(int i = 0; i < surface->w; i++) {
             auto pos = toFragment(IVec2(i, j));
@@ -84,9 +89,10 @@ void Renderer::renderToImage(const string &fileName, Float time) {
                 auto rayWorld = primaryCamera->getTransformation().toWorld(rayLocal);
                 pixelColor += traceIndirect(rayWorld.first, tracingDepth) / rayWorld.second;
             }
-            image.nextPixel(pixelColor / (sampleNumber * 1.0f));
+            image.setPixel(i, j, pixelColor / (sampleNumber * 1.0f));
         }
     }
+    image.write();
     std::cout << "Render completed to image " << fileName << std::endl;
 }
 

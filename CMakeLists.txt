@@ -2,12 +2,13 @@ cmake_minimum_required(VERSION 3.16)
 
 project(RelativisticRenderer VERSION 0.1)
 
-# set(CMAKE_BUILD_TYPE Release)
+set(CMAKE_BUILD_TYPE Release)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build/lib)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/build/lib)
+set(SDL2_DIR "ext/SDL2-2.28.5")
 
 find_package(SDL2 REQUIRED)
 find_package(Threads)

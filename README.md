@@ -1,4 +1,4 @@
-# RelativisticRenderer
+# Relativistic Renderer
 
 A ray tracing renderer based on special relativity.
 

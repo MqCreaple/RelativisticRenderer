@@ -2,7 +2,7 @@
 #include "RelativisticRenderer.h"
 using namespace gmq;
 
-int main() {
+int main(int argc, char *argv[]) {
     const int testNumber = 1000;
     for(int i = 0; i < testNumber; i++) {
         CHECK_EPSILON_EQU(Random::unitVec().length(), 1, 1e-7);

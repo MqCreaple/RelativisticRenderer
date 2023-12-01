@@ -2,7 +2,7 @@
 #include "RelativisticRenderer.h"
 using namespace gmq;
 
-int main() {
+int main(int argc, char *argv[]) {
     // Test 1: stationary sphere
     SphereObject object(Transformation::WORLD, Material::DEFAULT, 1.5);
     CHECK_EPSILON_EQU(object.getRadius(), 1.5, 1e-7);
