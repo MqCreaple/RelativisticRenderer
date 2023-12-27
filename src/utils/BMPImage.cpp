@@ -39,6 +39,10 @@ void BMPImage::setPixel(size_t x, size_t y, const Color &color) {
     data[index + 2] = (unsigned char)(std::min(static_cast<Float>(1.0), color.r) * 255);
 }
 
+std::ofstream &BMPImage::getOutputFStream() {
+    return this->fileStream;
+}
+
 BMPImage::~BMPImage() {
     delete[] data;
 }

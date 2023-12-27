@@ -76,6 +76,7 @@ void Renderer::render(Float time) {
 
 void Renderer::renderToImage(const string &fileName, Float time) {
     BMPImage image(fileName, surface->w, surface->h);
+    std::cout << "Start writing to image " << fileName << std::endl;
     for(int j = surface->h - 1; j >= 0; j--) {
         for(int i = 0; i < surface->w; i++) {
             auto pos = toFragment(IVec2(i, j));

@@ -24,3 +24,9 @@
 #include "renderer/Renderer.h"
 
 #include "utils/PPMImage.h"
+#include "utils/BMPImage.h"
+#include "utils/ThreadPool.h"
+#include "utils/Random.h"
+#include "utils/Color.h"
+#include "utils/Transformation.h"
+#include "utils/Ray.h"

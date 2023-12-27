@@ -5,6 +5,7 @@ add_library(libRelativisticRenderer
     utils/Color.cpp
     utils/PPMImage.cpp
     utils/BMPImage.cpp
+    utils/ThreadPool.cpp
     components/Object.cpp
     components/VisibleObject.cpp
     components/SphereObject.cpp
